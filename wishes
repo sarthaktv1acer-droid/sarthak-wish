@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Wishes by Sarthak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 215, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ffd700, #ff8c00, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 2s infinite;
+        }
+        
+        @keyframes shine {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); }
+            50% { text-shadow: 0 0 25px rgba(255, 215, 0, 0.9), 0 0 40px rgba(255, 140, 0, 0.8); }
+            100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); }
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .creator {
+            font-style: italic;
+            color: #ffd700;
+            margin-top: 10px;
+        }
+        
+        .progress-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .progress-bar {
+            width: 80%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #ffd700, #ff8c00);
+            width: 33%;
+            transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+        
+        .step {
+            padding: 30px;
+            min-height: 400px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .step.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .step-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+        
+        .option:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+        
+        .option.selected {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .option i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-prev {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .btn-next, .btn-submit {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #1a1a1a;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .result-container {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .result-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .wish-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px auto;
+            max-width: 600px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wish-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #ffd700, #ff8c00, #ff4500);
+        }
+        
+        .wish-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .artist-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            border: 1px solid #ffd700;
+        }
+        
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700, 0 0 20px #ff8c00;
+            animation: explode 1.5s ease-out forwards;
+        }
+        
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(30); opacity: 0; }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            top: -10px;
+            animation: fall 3s linear forwards;
+            z-index: -1;
+        }
+        
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); }
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2rem; }
+            .options-container { grid-template-columns: repeat(2, 1fr); }
+            .step { padding: 20px; }
+            .wish-text { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="fireworks" id="fireworks"></div>
+        
+        <div class="header">
+            <h1>✨ New Year Wishes  ✨</h1>
+            <p>Create your personalized New Year message in 3 simple steps</p>
+            <p class="creator">Designed by Sarthak</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+        
+        <!-- Stage 1: Mood Selection -->
+        <div class="step active" id="step1">
+            <h2 class="step-title">How are you feeling right now?</h2>
+            <div class="options-container">
+                <div class="option" data-value="happy">
+                    <i class="fas fa-smile"></i>
+                    <span>Happy</span>
+                </div>
+                <div class="option" data-value="excited">
+                    <i class="fas fa-star"></i>
+                    <span>Excited</span>
+                </div>
+                <div class="option" data-value="calm">
+                    <i class="fas fa-spa"></i>
+                    <span>Calm</span>
+                </div>
+                <div class="option" data-value="tired">
+                    <i class="fas fa-bed"></i>
+                    <span>Tired</span>
+                </div>
+                <div class="option" data-value="hopeful">
+                    <i class="fas fa-seedling"></i>
+                    <span>Hopeful</span>
+                </div>
+                <div class="option" data-value="nostalgic">
+                    <i class="fas fa-book"></i>
+                    <span>Nostalgic</span>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn btn-prev" disabled><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="btn btn-next" id="next1" disabled>Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <!-- Stage 2: Year Rating -->
+        <div class="step" id="step2">
+            <h2 class="step-title">How was your 2025?</h2>
+            <div class="options-container">
+                <div class="option" data-value="worst">
+                    <i class="fas fa-sad-tear"></i>
+                    <span>Worst</span>
+                </div>
+                <div class="option" data-value="bad">
+                    <i class="fas fa-frown"></i>
+                    <span>Bad</span>
+                </div>
+                <div class="option" data-value="average">
+                    <i class="fas fa-meh"></i>
+                    <span>Average</span>
+                </div>
+                <div class="option" data-value="good">
+                    <i class="fas fa-smile"></i>
+                    <span>Good</span>
+                </div>
+                <div class="option" data-value="very-good">
+                    <i class="fas fa-grin-stars"></i>
+                    <span>Very Good</span>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn btn-prev" id="prev2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="btn btn-next" id="next2" disabled>Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        
+        <!-- Stage 3: Artist Selection -->
+        <div class="step" id="step3">
+            <h2 class="step-title">Select your favorite artists (Choose 1-3)</h2>
+            <div class="options-container">
+                <!-- Hindi Artists -->
+                <div class="option" data-value="arjit">
+                    <i class="fas fa-music"></i>
+                    <span>Arijit Singh</span>
+                </div>
+                <div class="option" data-value="rahman">
+                    <i class="fas fa-composer"></i>
+                    <span>A.R. Rahman</span>
+                </div>
+                <div class="option" data-value="shreya">
+                    <i class="fas fa-microphone"></i>
+                    <span>Shreya Ghoshal</span>
+                </div>
+                <div class="option" data-value="sonu">
+                    <i class="fas fa-headphones"></i>
+                    <span>Sonu Nigam</span>
+                </div>
+                <div class="option" data-value="atif">
+                    <i class="fas fa-sunglasses"></i>
+                    <span>Atif Aslam</span>
+                </div>
+                <div class="option" data-value="neha">
+                    <i class="fas fa-drum"></i>
+                    <span>Neha Kakkar</span>
+                </div>
+                
+                <!-- Hollywood Artists -->
+                <div class="option" data-value="taylor">
+                    <i class="fas fa-guitar"></i>
+                    <span>Taylor Swift</span>
+                </div>
+                <div class="option" data-value="weeknd">
+                    <i class="fas fa-mask"></i>
+                    <span>The Weeknd</span>
+                </div>
+                <div class="option" data-value="drake">
+                    <i class="fas fa-record-vinyl"></i>
+                    <span>Drake</span>
+                </div>
+                <div class="option" data-value="billie">
+                    <i class="fas fa-heart"></i>
+                    <span>Billie Eilish</span>
+                </div>
+                <div class="option" data-value="ed">
+                    <i class="fas fa-piano"></i>
+                    <span>Ed Sheeran</span>
+                </div>
+                <div class="option" data-value="ariana">
+                    <i class="fas fa-feather-alt"></i>
+                    <span>Ariana Grande</span>
+                </div>
+                
+                <!-- Pollywood Artists -->
+                <div class="option" data-value="diljit">
+                    <i class="fas fa-flag"></i>
+                    <span>Diljit Dosanjh</span>
+                </div>
+                <div class="option" data-value="sidhu">
+                    <i class="fas fa-bolt"></i>
+                    <span>Sidhu Moosewala</span>
+                </div>
+                <div class="option" data-value="karan">
+                    <i class="fas fa-trumpet"></i>
+                    <span>Karan Aujla</span>
+                </div>
+                <div class="option" data-value="guru">
+                    <i class="fas fa-drum-steelband"></i>
+                    <span>Guru Randhawa</span>
+                </div>
+                <div class="option" data-value="amrinder">
+                    <i class="fas fa-violin"></i>
+                    <span>Amrinder Gill</span>
+                </div>
+                <div class="option" data-value="sharry">
+                    <i class="fas fa-wind"></i>
+                    <span>Sharry Mann</span>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="btn btn-prev" id="prev3"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="btn btn-submit" id="submit" disabled>Generate Wish <i class="fas fa-gift"></i></button>
+            </div>
+        </div>
+        
+        <!-- Result -->
+        <div class="step" id="result">
+            <div class="result-container">
+                <h2 class="result-title">Your Personalized New Year Wish</h2>
+                <div class="wish-card">
+                    <div class="wish-text" id="wishText"></div>
+                    <div id="artistBadge"></div>
+                </div>
+                <button class="btn btn-submit" id="restart">Generate Another Wish <i class="fas fa-redo"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store user selections
+        const selections = {
+            mood: null,
+            yearRating: null,
+            artists: []
+        };
+
+        // Artist names mapping
+        const artistNames = {
+            // Hindi Artists
+            arjit: "Arijit Singh",
+            rahman: "A.R. Rahman",
+            shreya: "Shreya Ghoshal",
+            sonu: "Sonu Nigam",
+            atif: "Atif Aslam",
+            neha: "Neha Kakkar",
+            
+            // Hollywood Artists
+            taylor: "Taylor Swift",
+            weeknd: "The Weeknd",
+            drake: "Drake",
+            billie: "Billie Eilish",
+            ed: "Ed Sheeran",
+            ariana: "Ariana Grande",
+            
+            // Pollywood Artists
+            diljit: "Diljit Dosanjh",
+            sidhu: "Sidhu Moosewala",
+            karan: "Karan Aujla",
+            guru: "Guru Randhawa",
+            amrinder: "Amrinder Gill",
+            sharry: "Sharry Mann"
+        };
+
+        // Wishes templates
+        const wishTemplates = [
+            "Hey there! This New Year wish comes to you from Sarthak. As you step into the New Year, may your heart continue to be {mood}. Your 2025 was {yearRating}, and I hope 2026 brings you even more joy and success. May the music of {artists} continue to inspire your journey! Wishing you a spectacular New Year filled with love, laughter, and dreams come true.",
+            "Warmest wishes for the New Year from Sarthak! With your {mood} spirit, you're ready to conquer 2026. Though 2025 was {yearRating}, the best is yet to come. Let the rhythms of {artists} guide you to new adventures. May your year be filled with harmony, happiness, and heartfelt moments!",
+            "Sarthak sends you New Year blessings! Your {mood} energy will carry you through 2026. Even though 2025 was {yearRating}, remember that every challenge makes you stronger. Let the beats of {artists} keep you moving forward. Here's to a year of melody, meaning, and magnificent memories!",
+            "From Sarthak with love - Happy New Year! As someone who's {mood}, you're perfectly positioned for an amazing 2026. Your 2025 journey was {yearRating}, but this year will be your masterpiece. Let {artists}' music be your soundtrack to success. May your days be filled with rhythm, reason, and radiant joy!",
+            "Sarthak wishes you a joyful New Year! With your {mood} attitude, 2026 will be incredible. Your 2025 experience was {yearRating}, but every year brings new opportunities. Let the harmonies of {artists} lift your spirit. Here's to a year of music, magic, and magnificent achievements!"
+        ];
+
+        // Year rating messages
+        const yearMessages = {
+            worst: "challenging but character-building",
+            bad: "tough but taught valuable lessons",
+            average: "steady with moments of growth",
+            good: "full of wonderful moments",
+            "very-good": "absolutely amazing and fulfilling"
+        };
+
+        // Mood messages
+        const moodMessages = {
+            happy: "radiating positivity",
+            excited: "bursting with energy",
+            calm: "peaceful and centered",
+            tired: "reflective and ready for rest",
+            hopeful: "looking forward with optimism",
+            nostalgic: "cherishing the memories"
+        };
+
+        // DOM Elements
+        const steps = document.querySelectorAll('.step');
+        const options = document.querySelectorAll('.option');
+        const progress = document.getElementById('progress');
+        const next1 = document.getElementById('next1');
+        const next2 = document.getElementById('next2');
+        const prev2 = document.getElementById('prev2');
+        const prev3 = document.getElementById('prev3');
+        const submit = document.getElementById('submit');
+        const restart = document.getElementById('restart');
+        const wishText = document.getElementById('wishText');
+        const artistBadge = document.getElementById('artistBadge');
+        const fireworks = document.getElementById('fireworks');
+
+        // Option selection handler - allow multiple selections
+        options.forEach(option => {
+            option.addEventListener('click', function() {
+                // Toggle selection
+                this.classList.toggle('selected');
+                
+                // Determine which step we're in and store selection
+                const stepId = this.closest('.step').id;
+                
+                if (stepId === 'step1') {
+                    selections.mood = this.dataset.value;
+                    next1.disabled = false;
+                } else if (stepId === 'step2') {
+                    selections.yearRating = this.dataset.value;
+                    next2.disabled = false;
+                } else if (stepId === 'step3') {
+                    const artistValue = this.dataset.value;
+                    
+                    // Add to artists array if not already selected
+                    if (!selections.artists.includes(artistValue)) {
+                        selections.artists.push(artistValue);
+                    } else {
+                        // Remove from array if already selected
+                        selections.artists = selections.artists.filter(item => item !== artistValue);
+                    }
+                    
+                    // Enable submit if at least one artist is selected
+                    submit.disabled = selections.artists.length === 0;
+                }
+            });
+        });
+
+        // Navigation handlers
+        next1.addEventListener('click', () => goToStep(2));
+        next2.addEventListener('click', () => goToStep(3));
+        prev2.addEventListener('click', () => goToStep(1));
+        prev3.addEventListener('click', () => goToStep(2));
+        submit.addEventListener('click', showResult);
+        restart.addEventListener('click', resetApp);
+
+        // Step navigation function
+        function goToStep(stepNumber) {
+            // Hide all steps
+            steps.forEach(step => step.classList.remove('active'));
+            
+            // Show the target step
+            document.getElementById(`step${stepNumber}`).classList.add('active');
+            
+            // Update progress bar
+            progress.style.width = `${stepNumber * 33}%`;
+            
+            // Create confetti on step transitions
+            createConfetti();
+        }
+
+        // Show result function
+        function showResult() {
+            steps.forEach(step => step.classList.remove('active'));
+            document.getElementById('result').classList.add('active');
+            progress.style.width = '100%';
+            
+            // Generate personalized wish
+            generateWish();
+            
+            // Create fireworks effect
+            createFireworks();
+        }
+
+        // Generate personalized wish text
+        function generateWish() {
+            const mood = selections.mood;
+            const yearRating = selections.yearRating;
+            const artists = selections.artists;
+            
+            // Get a random template
+            const randomTemplate = wishTemplates[Math.floor(Math.random() * wishTemplates.length)];
+            
+            // Format the wish
+            let wish = randomTemplate
+                .replace("{mood}", moodMessages[mood])
+                .replace("{yearRating}", yearMessages[yearRating]);
+            
+            // Format artists - if multiple selected, join with commas and "and"
+            if (artists.length > 0) {
+                const artistList = artists.map(artist => artistNames[artist]);
+                
+                if (artistList.length === 1) {
+                    wish = wish.replace("{artists}", artistList[0]);
+                } else if (artistList.length === 2) {
+                    wish = wish.replace("{artists}", artistList.join(" and "));
+                } else {
+                    const lastArtist = artistList.pop();
+                    wish = wish.replace("{artists}", artistList.join(", ") + ", and " + lastArtist);
+                }
+            }
+            
+            wishText.textContent = wish;
+            
+            // Create artist badge
+            const artistNamesList = artists.map(artist => artistNames[artist]);
+            artistBadge.innerHTML = `<i class="fas fa-music"></i> Fan of ${artistNamesList.join(", ")}`;
+        }
+
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#ffd700', '#ff8c00', '#ff4500', '#ffffff', '#00ff00'];
+            
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, 4000);
+            }
+        }
+
+        // Create fireworks effect
+        function createFireworks() {
+            const colors = ['#ffd700', '#ff8c00', '#ff4500', '#ffffff', '#00ff00'];
+            
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * 80 + 10; // 10-90%
+                    const y = Math.random() * 60 + 20; // 20-80%
+                    
+                    const firework = document.createElement('div');
+                    firework.classList.add('firework');
+                    firework.style.left = x + '%';
+                    firework.style.top = y + '%';
+                    firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    fireworks.appendChild(firework);
+                    
+                    // Remove after animation completes
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 1500);
+                }, i * 400);
+            }
+        }
+
+        // Reset the application
+        function resetApp() {
+            // Reset selections
+            selections.mood = null;
+            selections.yearRating = null;
+            selections.artists = [];
+            
+            // Reset UI
+            options.forEach(opt => opt.classList.remove('selected'));
+            next1.disabled = true;
+            next2.disabled = true;
+            submit.disabled = true;
+            
+            // Go back to step 1
+            steps.forEach(step => step.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+            progress.style.width = '33%';
+            
+            // Clear result
+            wishText.textContent = '';
+            artistBadge.innerHTML = '';
+            
+            // Clear fireworks
+            fireworks.innerHTML = '';
+        }
+
+        // Initialize with some confetti for visual appeal
+        setTimeout(createConfetti, 500);
+    </script>
+</body>
+</html>
